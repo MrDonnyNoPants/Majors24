@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majors 24 — Getting Started</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="page">
+
+        <div class="cover">
+            <p class="team-name">Auto Addict Racing</p>
+            <p class="event-label">Majors Series · iRacing · Le Mans</p>
+            <h1>Getting Started</h1>
+            <p class="subtitle">Quick-start checklist for the team</p>
+            <div class="badges">
+                <span class="badge">GT3 CLASS</span>
+                <span class="badge">START HERE</span>
+                <span class="badge">2026 GUIDE</span>
+            </div>
+        </div>
+
+        <div id="tz-banner" class="tz-banner no-print"></div>
+
+        <div class="callout callout-green">
+            <strong>New to Majors 24?</strong>
+            Follow these steps before you race.
+        </div>
+
+        <h2 id="overview"><span class="num">1</span> What This Page Is For</h2>
+        <p>This page is a simple, practical onboarding guide for every driver and team contact. It focuses on the first
+            actions that need to happen immediately after registration and before race day.</p>
+
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <strong>Confirm your place on the team in iRacing.</strong>
+                    Make sure you are listed on the team roster in the iRacing team page for Majors 24.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <strong>Make a free account at majorsseries.com.</strong>
+                    Visit <a href="https://majorsseries.com/register"
+                        target="_blank">https://majorsseries.com/register</a> and complete the registration.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <strong>Join the Majors 24/MEC League from the iRacing UI.</strong>
+                    League ID: <strong>9686</strong>. League name currently shows as: <strong>Majors 24</strong>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-body">
+                    <strong>Inform the team owner or Michael Sylvester.</strong>
+                    Tell <strong>Stiaan Neveling</strong> or <strong>Michael Sylvester</strong> so you can be added to
+                    the Majors 24 team.
+                </div>
+            </div>
+        </div>
+
+        <h2 id="practice"><span class="num">2</span> Practice Sessions</h2>
+        <p>Once approved for the Majors 24 league, both practice and Pre-Qualifying sessions appear in iRacing under
+            <strong>Leagues → Up Next</strong>.</p>
+        <ol>
+            <li>Look for Majors 24 practice and Pre-Q sessions under <strong>Leagues: Up Next</strong> in iRacing.</li>
+            <li>These sessions become available starting <strong><span data-utc="2026-05-30T07:00:00Z">May 30, 2026 at
+                        2:00 AM CDT</span></strong>. Every driver must set at least one PQ lap before the deadline or
+                they cannot race.</li>
+        </ol>
+
+        <div class="callout callout-blue">
+            <strong>ℹ All times are shown in your local timezone.</strong>
+            The practice session time above updates to match your system clock.
+        </div>
+
+        <p style="text-align:center; margin: 28px 0 0;">
+            <a class="button" href="index.html">Open Home Page / Full Guide</a>
+        </p>
+
+        <hr>
+        <p style="text-align:center;color:var(--muted);font-size:8.5pt;">
+            Majors 24 Getting Started · GT3 Class · 2026 Edition<br>
+            Use the full guide for complete rules and procedures.
+        </p>
+    </div>
+
+    <script>
+        (function () {
+            const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const offset = -new Date().getTimezoneOffset();
+            const oh = Math.floor(Math.abs(offset) / 60);
+            const om = Math.abs(offset) % 60;
+            const offsetStr = (offset >= 0 ? '+' : '-') + String(oh).padStart(2, '0') + ':' + String(om).padStart(2, '0');
+
+            const banner = document.getElementById('tz-banner');
+            if (banner) {
+                banner.innerHTML = '⏰ All times shown in your local timezone: <strong>' + tz + ' (UTC' + offsetStr + ')</strong>';
+            }
+
+            function fmtLocalDateTime(date) {
+                const dateStr = date.toLocaleDateString([], {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+                const timeStr = date.toLocaleTimeString([], {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    timeZoneName: 'short'
+                });
+                return dateStr + ' at ' + timeStr;
+            }
+
+            document.querySelectorAll('[data-utc]').forEach(function (el) {
+                const utcDate = new Date(el.getAttribute('data-utc'));
+                const localDateTimeStr = fmtLocalDateTime(utcDate);
+                let html = '<span class="local-t">' + localDateTimeStr + '</span>';
+                el.outerHTML = html;
+            });
+        })();
+    </script>
+</body>
+
+</html>
